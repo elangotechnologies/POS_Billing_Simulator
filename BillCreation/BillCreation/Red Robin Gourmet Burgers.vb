@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class CR_GeneralBill
+Public Class Red_Robin_Gourmet_Burgers
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class CR_GeneralBill
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "CR_GeneralBill.rpt"
+            Return "Red Robin Gourmet Burgers.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class CR_GeneralBill
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "BillCreation.CR_GeneralBill.rpt"
+            Return "BillCreation.Red Robin Gourmet Burgers.rpt"
         End Get
         Set
             'Do nothing
@@ -94,7 +94,7 @@ Public Class CR_GeneralBill
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedCR_GeneralBill
+Public Class CachedRed_Robin_Gourmet_Burgers
     Inherits Component
     Implements ICachedReport
     
@@ -136,7 +136,7 @@ Public Class CachedCR_GeneralBill
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As CR_GeneralBill = New CR_GeneralBill()
+        Dim rpt As Red_Robin_Gourmet_Burgers = New Red_Robin_Gourmet_Burgers()
         rpt.Site = Me.Site
         Return rpt
     End Function

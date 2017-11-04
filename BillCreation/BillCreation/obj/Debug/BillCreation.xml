@@ -27,17 +27,47 @@ BillCreation
 Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
-<member name="T:BillCreation.DataSetForBillReport.BillDetailsTableDataTable">
+<member name="T:BillCreation.DataSetForBillReport.BillItemsDataTable">
 <summary>
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:BillCreation.DataSetForBillReport.BillDetailsTableRow">
+<member name="T:BillCreation.DataSetForBillReport.EntityDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.BillDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.BillItemsRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
 </member>
-<member name="T:BillCreation.DataSetForBillReport.BillDetailsTableRowChangeEvent">
+<member name="T:BillCreation.DataSetForBillReport.EntityRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.BillRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.BillItemsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.EntityRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:BillCreation.DataSetForBillReport.BillRowChangeEvent">
 <summary>
 Row event argument class
 </summary>

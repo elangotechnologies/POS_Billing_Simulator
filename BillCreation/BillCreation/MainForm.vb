@@ -1,5 +1,8 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Reflection
 Imports System.Threading
+Imports CrystalDecisions.CrystalReports.Engine
 Imports NLog
 
 
@@ -91,8 +94,8 @@ Public Class MainForm
                 cmbEntityTypeList.Focus()
             Else
                 Dim query As String = String.Empty
-                query &= "INSERT INTO Entity (name, building, street, city, state, country, pin, type, billHeight, billWidth, taxPercent, distanceFromHotel, distanceFromOffice) "
-                query &= "VALUES (@name, @building, @street, @city, @state, @country, @pin, @type, @billHeight, @billWidth, @taxPercent, @distanceFromHotel, @distanceFromOffice)"
+                query &= "INSERT INTO Entity (name, addressLine1, addressLine2, addressLine3, addressLine4, type, billHeight, billWidth, taxPercent, distanceFromHotel, distanceFromOffice) "
+                query &= "VALUES (@name, @addressLine1, @addressLine2, @addressLine3, @addressLine4, @type, @billHeight, @billWidth, @taxPercent, @distanceFromHotel, @distanceFromOffice)"
 
                 Using comm As New SqlCommand()
                     With comm
@@ -100,12 +103,10 @@ Public Class MainForm
                         .CommandType = CommandType.Text
                         .CommandText = query
                         .Parameters.AddWithValue("@name", cmbEntityList.Text)
-                        .Parameters.AddWithValue("@building", getDBNullValueIfTextBoxNull(txtEntityBuilding))
-                        .Parameters.AddWithValue("@street", getDBNullValueIfTextBoxNull(txtEntityStreet))
-                        .Parameters.AddWithValue("@city", getDBNullValueIfTextBoxNull(txtEntityCity))
-                        .Parameters.AddWithValue("@state", getDBNullValueIfTextBoxNull(txtEntityState))
-                        .Parameters.AddWithValue("@country", getDBNullValueIfTextBoxNull(txtEntityCountry))
-                        .Parameters.AddWithValue("@pin", getDBNullValueIfTextBoxNull(txtEntityPin))
+                        .Parameters.AddWithValue("@addressLine1", getDBNullValueIfTextBoxNull(txtEntityAddressLine1))
+                        .Parameters.AddWithValue("@addressLine2", getDBNullValueIfTextBoxNull(txtEntityAddressLine2))
+                        .Parameters.AddWithValue("@addressLine3", getDBNullValueIfTextBoxNull(txtEntityAddressLine3))
+                        .Parameters.AddWithValue("@addressLine4", getDBNullValueIfTextBoxNull(txtEntityAddressLine4))
                         .Parameters.AddWithValue("@type", getDBNullValueIfComboBoxNull(cmbEntityTypeList))
                         .Parameters.AddWithValue("@billHeight", getDBNullValueIfTextBoxNull(txtEntityBillHeight))
                         .Parameters.AddWithValue("@billWidth", getDBNullValueIfTextBoxNull(txtEntityBillWidth))
@@ -155,6 +156,7 @@ Public Class MainForm
 
         If (cmbEntityList.SelectedIndex = -1 Or cmbEntityList.SelectedValue = -1) Then
             emptyEntityScreen()
+            gSelectedEntityId = -1
             Return
         End If
 
@@ -170,12 +172,10 @@ Public Class MainForm
 
         If (entityTable.Rows.Count > 0) Then
             Dim dataRow = entityTable.Rows(0)
-            txtEntityBuilding.Text = dataRow.Item("building").ToString
-            txtEntityStreet.Text = dataRow.Item("street").ToString
-            txtEntityCity.Text = dataRow.Item("city").ToString
-            txtEntityState.Text = dataRow.Item("state").ToString
-            txtEntityCountry.Text = dataRow.Item("country").ToString
-            txtEntityPin.Text = dataRow.Item("pin").ToString
+            txtEntityAddressLine1.Text = dataRow.Item("addressLine1").ToString
+            txtEntityAddressLine2.Text = dataRow.Item("addressLine2").ToString
+            txtEntityAddressLine3.Text = dataRow.Item("addressLine3").ToString
+            txtEntityAddressLine4.Text = dataRow.Item("addressLine4").ToString
             cmbEntityTypeList.Text = dataRow.Item("type").ToString
             txtEntityBillHeight.Text = dataRow.Item("billHeight").ToString
             txtEntityBillWidth.Text = dataRow.Item("billWidth").ToString
@@ -200,12 +200,10 @@ Public Class MainForm
     End Sub
 
     Sub emptyEntityScreen()
-        txtEntityBuilding.Text = ""
-        txtEntityStreet.Text = ""
-        txtEntityCity.Text = ""
-        txtEntityState.Text = ""
-        txtEntityCountry.Text = ""
-        txtEntityPin.Text = ""
+        txtEntityAddressLine1.Text = ""
+        txtEntityAddressLine2.Text = ""
+        txtEntityAddressLine3.Text = ""
+        txtEntityAddressLine4.Text = ""
         cmbEntityTypeList.Text = ""
         txtEntityBillHeight.Text = ""
         txtEntityBillWidth.Text = ""
@@ -234,7 +232,8 @@ Public Class MainForm
         Else
             Dim entityId As Integer = gSelectedEntityId
             Dim query As String = String.Empty
-            query &= "UPDATE Entity set name=@name, building=@building, street=@street, city=@city, state=@state, country=@country, pin=@pin, type=@type, billHeight=@billHeight, billWidth=@billWidth, taxPercent=@taxPercent, distanceFromHotel=@distanceFromHotel, distanceFromOffice=@distanceFromOffice"
+            query &= "UPDATE Entity set name=@name, addressLine1=@addressLine1, addressLine2=@addressLine2, addressLine3=@addressLine3,
+            addressLine4=@addressLine4, type=@type, billHeight=@billHeight, billWidth=@billWidth, taxPercent=@taxPercent, distanceFromHotel=@distanceFromHotel, distanceFromOffice=@distanceFromOffice"
             query &= " where id=@id"
 
             Using comm As New SqlCommand()
@@ -244,12 +243,10 @@ Public Class MainForm
                     .CommandText = query
                     .Parameters.AddWithValue("@id", entityId.ToString)
                     .Parameters.AddWithValue("@name", cmbEntityList.Text)
-                    .Parameters.AddWithValue("@building", getDBNullValueIfTextBoxNull(txtEntityBuilding))
-                    .Parameters.AddWithValue("@street", getDBNullValueIfTextBoxNull(txtEntityStreet))
-                    .Parameters.AddWithValue("@city", getDBNullValueIfTextBoxNull(txtEntityCity))
-                    .Parameters.AddWithValue("@state", getDBNullValueIfTextBoxNull(txtEntityState))
-                    .Parameters.AddWithValue("@country", getDBNullValueIfTextBoxNull(txtEntityCountry))
-                    .Parameters.AddWithValue("@pin", getDBNullValueIfTextBoxNull(txtEntityPin))
+                    .Parameters.AddWithValue("@addressLine1", getDBNullValueIfTextBoxNull(txtEntityAddressLine1))
+                    .Parameters.AddWithValue("@addressLine2", getDBNullValueIfTextBoxNull(txtEntityAddressLine2))
+                    .Parameters.AddWithValue("@addressLine3", getDBNullValueIfTextBoxNull(txtEntityAddressLine3))
+                    .Parameters.AddWithValue("@addressLine4", getDBNullValueIfTextBoxNull(txtEntityAddressLine4))
                     .Parameters.AddWithValue("@type", getDBNullValueIfComboBoxNull(cmbEntityTypeList))
                     .Parameters.AddWithValue("@billHeight", getDBNullValueIfTextBoxNull(txtEntityBillHeight))
                     .Parameters.AddWithValue("@billWidth", getDBNullValueIfTextBoxNull(txtEntityBillWidth))
@@ -423,6 +420,7 @@ Public Class MainForm
 
         If (cmbItemList.SelectedIndex = -1 Or cmbItemList.SelectedValue = -1) Then
             emptyItemScreen()
+            gSelectedItemId = -1
             Return
         End If
 
@@ -624,6 +622,7 @@ Public Class MainForm
 
         If (cmbItemPriceIdList.SelectedIndex = -1 Or cmbItemPriceIdList.SelectedValue = -1) Then
             emptyItemPriceScreen()
+            gSelectedItemPriceId = -1
             Return
         End If
 
@@ -722,7 +721,7 @@ Public Class MainForm
 
         If MessageBox.Show("Are you sure to delete this ItemPriceEntityWise - " & cmbItemPriceIdList.Text & " ?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
             Dim query As String = String.Empty
-            query &= "DELETE FROM itemPrice where id=@id"
+            query &= "DELETE FROM ItemPriceEntityWise where id=@id"
 
             Using comm As New SqlCommand()
                 With comm
@@ -781,18 +780,21 @@ Public Class MainForm
             Return
         End If
 
-        loadBillsList(cmbBillsEntityList.SelectedValue)
+        loadBillsListAndGrid(cmbBillsEntityList.SelectedValue)
         loadItemPriceTreeView(cmbBillsEntityList.SelectedValue)
     End Sub
 
-    Sub loadBillsList(entityId As Integer)
+    Sub loadBillsListAndGrid(entityId As Integer)
         Dim thread As Thread = New Thread(AddressOf loadBillsListAndGridInThread)
         thread.IsBackground = True
         thread.Start(entityId)
     End Sub
 
     Sub loadBillsListAndGridInThread(entityId As Integer)
-        Dim billsQuery = New SqlCommand("Select *,CONVERT(varchar(5), id) as name from bill where entityId=" + entityId.ToString(), dbConnection)
+        Dim billsQuery = New SqlCommand("Select id,CONVERT(varchar(5), id) as name, displayBillId, entityId,
+                        dateTime, itemsPriceInTotal, taxAmount, itemsPriceInTotal+taxAmount as priceInclTax, tipAmount,
+                        itemsPriceInTotal+taxAmount+tipAmount as finalBillAmount, cardNo, cardTransactionRef, extra1, extra2, orderNo, authToken, placeCameFrom
+                         from bill where entityId=" + entityId.ToString(), dbConnection)
         Dim billsAdapter = New SqlDataAdapter()
         billsAdapter.SelectCommand = billsQuery
         Dim billsDataSet = New DataSet
@@ -909,34 +911,46 @@ Public Class MainForm
             Return
         End If
 
+        Dim currentBillItemsQtyTable As DataTable = dgvBillsItemsQty.DataSource
+
         Dim selectedItemsPriceIds As List(Of String) = New List(Of String)
         getselectedItemsPriceIds(selectedItemsPriceIds, tvBillsBillItems.TopNode)
 
         Dim billItemsQtyDataTable As New DataTable
-        billItemsQtyDataTable.Columns.AddRange(New DataColumn() {New DataColumn("id", GetType(Integer)),
+        billItemsQtyDataTable.Columns.AddRange(New DataColumn() {
+                                               New DataColumn("id", GetType(Integer)),
+                                               New DataColumn("billId", GetType(Integer)),
+                                               New DataColumn("itemPriceId", GetType(Integer)),
                                                New DataColumn("itemName", GetType(String)),
                                                New DataColumn("itemPrice", GetType(Decimal)),
-                                               New DataColumn("qty", GetType(Integer))})
+                                               New DataColumn("qty", GetType(Integer))
+                                               })
 
         Dim itemPriceId As Integer = -1
         Dim itemName As String = String.Empty
         Dim itemPrice As Decimal = -1
+        Dim itemQty As Integer = 1
+        Dim billId As Integer = cmbBillsBillIdList.SelectedValue
         Dim selectedItemDetails As List(Of String) = New List(Of String)
         For Each itemPriceStr As String In selectedItemsPriceIds
             selectedItemDetails.Clear()
-            log.Debug("itemPriceStr: " + itemPriceStr)
             selectedItemDetails.AddRange(itemPriceStr.Split(":"c))
             itemPriceId = Integer.Parse(selectedItemDetails.ElementAt(0))
-            log.Debug("itemPriceId: " + itemPriceId.ToString)
             itemName = selectedItemDetails.ElementAt(1)
             itemPrice = Decimal.Parse(selectedItemDetails.ElementAt(2))
-            billItemsQtyDataTable.Rows.Add(itemPriceId, itemName, itemPrice, 1)
+            itemQty = 1
+            If currentBillItemsQtyTable IsNot Nothing AndAlso currentBillItemsQtyTable.Rows.Count > 0 Then
+                For Each dataRow As DataRow In currentBillItemsQtyTable.Rows
+                    If dataRow.Item("itemPriceId") = itemPriceId Then
+                        itemQty = dataRow.Item("qty")
+                    End If
+                Next
+            End If
+            billItemsQtyDataTable.Rows.Add(-1, billId, itemPriceId, itemName, itemPrice, itemQty)
+            'log.Debug("tvBillsItemsToSelect_AfterCheck: adding itemName: " + itemName)
         Next
+        'log.Debug("tvBillsItemsToSelect_AfterCheck: adding rows count: " + billItemsQtyDataTable.Rows.Count.ToString)
         dgvBillsItemsQty.DataSource = billItemsQtyDataTable
-
-        txtBillsItemPriceIds.Text = String.Join(",", selectedItemsPriceIds)
-
-        log.Debug("tvBillSelectionItemsToSelect_AfterCheck: " + txtBillsItemPriceIds.Text)
 
         'loadSelectedItemPrices(selectedItemsPriceIds)
     End Sub
@@ -993,20 +1007,37 @@ Public Class MainForm
     Private Sub cmbBillsBillIdList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbBillsBillIdList.SelectedIndexChanged
         If (cmbBillsBillIdList.SelectedIndex = -1 Or cmbBillsBillIdList.SelectedValue = -1) Then
             emptyBillsScreen()
+            gSelectedBillId = -1
             Return
         End If
 
+        gSelectedBillId = cmbBillsBillIdList.SelectedValue
+
         loadBillDetailsByBillId(cmbBillsEntityList.SelectedValue)
-        'loadItemPriceTreeView(cmbBillsEntityList.SelectedValue)
+
+        Dim billReportData As BillReportData = New BillReportData
+        billReportData.entityId = cmbBillsEntityList.SelectedValue
+        billReportData.billId = cmbBillsBillIdList.SelectedValue
+        loadBillDetailInReport(billReportData)
     End Sub
 
     Private Sub loadBillDetailsByBillId(entityId As Integer)
-        Dim billId As Integer = cmbBillsBillIdList.SelectedValue
-        gSelectedBillId = billId
+
+        If gSelectedBillId = -1 Then
+            Return
+        End If
 
         Dim itemCategoryAndPriceDataset As DataSet = New DataSet
+        Dim billItemsSelectQuery = New SqlCommand("select bi.id, bi.billId, bi.itemPriceId, bi.qty, i.name as itemName, ip.price as itemPrice 
+                                                  from BillItems bi, item i, itemPriceEntityWise ip 
+                                                  where bi.itemPriceId = ip.id and ip.itemId = i.id and bi.billId=" + gSelectedBillId.ToString, dbConnection)
+        Dim billItemsDataAdapter = New SqlDataAdapter()
+        billItemsDataAdapter.SelectCommand = billItemsSelectQuery
+        billItemsDataAdapter.Fill(itemCategoryAndPriceDataset, "BillItems")
+        Dim billItemsTable = itemCategoryAndPriceDataset.Tables("BillItems")
+        dgvBillsItemsQty.DataSource = billItemsTable
 
-        Dim billSelectQuery = New SqlCommand("select * from bill where id=" + billId.ToString, dbConnection)
+        Dim billSelectQuery = New SqlCommand("select * from bill where id=" + gSelectedBillId.ToString, dbConnection)
         Dim billDataAdapter = New SqlDataAdapter()
         billDataAdapter.SelectCommand = billSelectQuery
         billDataAdapter.Fill(itemCategoryAndPriceDataset, "Bill")
@@ -1016,11 +1047,15 @@ Public Class MainForm
             Dim dataRow = billTable.Rows(0)
             txtBillsDisplayBillId.Text = dataRow.Item("displayBillId")
             dtpBillsBillDate.Text = dataRow.Item("dateTime")
-            txtBillsItemPriceIds.Text = dataRow.Item("itemPriceIds")
             txtBillsItemTotalPrice.Text = dataRow.Item("itemsPriceInTotal")
             txtBillsTaxAmount.Text = dataRow.Item("taxAmount")
-            txtBillsFinalBillAmount.Text = dataRow.Item("finalBillAmount")
-            txtBillsRemarks.Text = If(dataRow.Item("remarks") Is DBNull.Value, "", dataRow.Item("remarks"))
+            txtBillsTipAmount.Text = dataRow.Item("tipAmount")
+            txtBillsCardNum.Text = If(dataRow.Item("cardNo") Is DBNull.Value, "", dataRow.Item("cardNo"))
+            txtBillsCardTransRef.Text = If(dataRow.Item("cardTransactionRef") Is DBNull.Value, "", dataRow.Item("cardTransactionRef"))
+            txtBillsOrderNo.Text = If(dataRow.Item("orderNo") Is DBNull.Value, "", dataRow.Item("orderNo"))
+            txtBillsAuthToken.Text = If(dataRow.Item("authToken") Is DBNull.Value, "", dataRow.Item("authToken"))
+            txtBillsExtra1.Text = If(dataRow.Item("extra1") Is DBNull.Value, "", dataRow.Item("extra1"))
+            txtBillsExtra2.Text = If(dataRow.Item("extra2") Is DBNull.Value, "", dataRow.Item("extra2"))
             txtBillsPlaceCameFrom.Text = If(dataRow.Item("placeCameFrom") Is DBNull.Value, "", dataRow.Item("placeCameFrom"))
         End If
 
@@ -1055,15 +1090,16 @@ Public Class MainForm
         log.Debug("setItemPriceTreeData: called")
 
         Dim billTable = itemCategoryAndPriceDataset.Tables("Bill")
+        Dim billItemsTable = itemCategoryAndPriceDataset.Tables("BillItems")
         Dim itemCategoryTable = itemCategoryAndPriceDataset.Tables("ItemCategory")
         Dim itemPriceTable = itemCategoryAndPriceDataset.Tables("ItemPriceEntityWise")
 
         Dim itemPriceIdsList As List(Of String) = New List(Of String)
 
-        If billTable IsNot Nothing AndAlso billTable.Rows.Count > 0 Then
-            Dim dataRow = billTable.Rows(0)
-            Dim itemPriceIds As String = dataRow.Item("itemPriceIds")
-            itemPriceIdsList.AddRange(itemPriceIds.Split(","c))
+        If billItemsTable IsNot Nothing Then
+            For Each dataRow As DataRow In billItemsTable.Rows
+                itemPriceIdsList.Add(dataRow.Item("itemPriceId"))
+            Next
         End If
 
         tvBillsBillItems.Nodes.Clear()
@@ -1103,12 +1139,18 @@ Public Class MainForm
     Sub emptyBillsScreen()
         txtBillsDisplayBillId.Text = ""
         dtpBillsBillDate.Text = ""
-        txtBillsItemPriceIds.Text = ""
         txtBillsItemTotalPrice.Text = ""
         txtBillsTaxAmount.Text = ""
-        txtBillsFinalBillAmount.Text = ""
-        txtBillsRemarks.Text = ""
+        txtBillsTipAmount.Text = ""
+        txtBillsPriceInclTax.Text = ""
+        txtBillsFianlBillAmount.Text = ""
+        txtBillsExtra1.Text = ""
+        txtBillsExtra2.Text = ""
         txtBillsPlaceCameFrom.Text = ""
+        txtBillsCardNum.Text = ""
+        txtBillsAuthToken.Text = ""
+        txtBillsCardTransRef.Text = ""
+        txtBillsOrderNo.Text = ""
         deselectAllNodes(tvBillsBillItems.TopNode)
     End Sub
 
@@ -1124,14 +1166,13 @@ Public Class MainForm
             ElseIf txtBillsDisplayBillId.Text.Trim() = "" Then
                 MessageBox.Show("Enter valid display bill id")
                 txtBillsDisplayBillId.Focus()
-            ElseIf txtBillsItemPriceIds.Text.Trim() = "" Or txtBillsItemTotalPrice.Text.Trim() = "" Or txtBillsFinalBillAmount.Text.Trim() = "" Then
-
+            ElseIf txtBillsItemTotalPrice.Text.Trim() = "" Or txtBillsPriceInclTax.Text.Trim() = "" Then
                 MessageBox.Show("Select atleast one item to bill")
-                txtBillsItemPriceIds.Focus()
+                tvBillsBillItems.Focus()
             Else
                 Dim query As String = String.Empty
-                query &= "INSERT INTO Bill (displayBillId, entityId, dateTime, itemPriceIds, itemsPriceInTotal, taxAmount, finalBillAmount, remarks, placeCameFrom) "
-                query &= "VALUES (@displayBillId, @entityId, @dateTime, @itemPriceIds, @itemsPriceInTotal, @taxAmount, @finalBillAmount, @remarks, @placeCameFrom); Select SCOPE_IDENTITY()"
+                query &= "INSERT INTO Bill (displayBillId, entityId, dateTime, itemsPriceInTotal, taxAmount, tipAmount, cardNo, cardTransactionRef, extra1, extra2, orderNo, authToken, placeCameFrom) "
+                query &= "VALUES (@displayBillId, @entityId, @dateTime, @itemsPriceInTotal, @taxAmount, @tipAmount, @cardNo, @cardTransactionRef, @extra1, @extra2, @orderNo, @authToken, @placeCameFrom); Select SCOPE_IDENTITY()"
                 Dim newBillNo As Integer = -1
 
                 Using comm As New SqlCommand()
@@ -1142,36 +1183,35 @@ Public Class MainForm
                         .Parameters.AddWithValue("@displayBillId", txtBillsDisplayBillId.Text)
                         .Parameters.AddWithValue("@entityId", cmbBillsEntityList.SelectedValue)
                         .Parameters.AddWithValue("@dateTime", dtpBillsBillDate.Value)
-                        .Parameters.AddWithValue("@itemPriceIds", txtBillsItemPriceIds.Text)
                         .Parameters.AddWithValue("@itemsPriceInTotal", txtBillsItemTotalPrice.Text)
                         .Parameters.AddWithValue("@taxAmount", getDecimalZeroIfNull(txtBillsTaxAmount))
-                        .Parameters.AddWithValue("@finalBillAmount", txtBillsFinalBillAmount.Text)
-                        .Parameters.AddWithValue("@remarks", getDBNullValueIfTextBoxNull(txtBillsRemarks))
+                        .Parameters.AddWithValue("@tipAmount", getDecimalZeroIfNull(txtBillsTipAmount))
+                        .Parameters.AddWithValue("@extra1", getDBNullValueIfTextBoxNull(txtBillsExtra1))
+                        .Parameters.AddWithValue("@extra2", getDBNullValueIfTextBoxNull(txtBillsExtra2))
                         .Parameters.AddWithValue("@placeCameFrom", getDBNullValueIfTextBoxNull(txtBillsPlaceCameFrom))
+                        .Parameters.AddWithValue("@cardNo", getDBNullValueIfTextBoxNull(txtBillsCardNum))
+                        .Parameters.AddWithValue("@cardTransactionRef", getDBNullValueIfTextBoxNull(txtBillsCardTransRef))
+                        .Parameters.AddWithValue("@orderNo", getDBNullValueIfTextBoxNull(txtBillsOrderNo))
+                        .Parameters.AddWithValue("@authToken", getDBNullValueIfTextBoxNull(txtBillsAuthToken))
                     End With
                     newBillNo = CInt(comm.ExecuteScalar())
                 End Using
 
-                Dim itemPriceIds As String = txtBillsItemPriceIds.Text
-                Dim itemPriceIdsList As List(Of String) = New List(Of String)
-                itemPriceIdsList.AddRange(itemPriceIds.Split(","c))
-
-                query = String.Empty
-                query &= "INSERT INTO BillItems (billId, itemPriceId, qty) "
+                query = "INSERT INTO BillItems (billId, itemPriceId, qty) "
                 query &= "VALUES (@billId, @itemPriceId, @qty)"
                 Dim cmdSql As New SqlCommand(query, dbConnection)
                 cmdSql.CommandType = CommandType.Text
-                'daSql.InsertCommand = cmdSql
-
-                For Each itemPriceId As Integer In itemPriceIdsList
+                Dim selectedItemDetails As List(Of String) = New List(Of String)
+                Dim billItemsGridTable As DataTable = dgvBillsItemsQty.DataSource
+                For Each dataRow As DataRow In billItemsGridTable.Rows
                     cmdSql.Parameters.Clear()
                     With cmdSql
                         .Connection = dbConnection
                         .CommandType = CommandType.Text
                         .CommandText = query
                         .Parameters.AddWithValue("@billId", newBillNo.ToString)
-                        .Parameters.AddWithValue("@itemPriceId", itemPriceId.ToString)
-                        .Parameters.AddWithValue("@qty", 1)
+                        .Parameters.AddWithValue("@itemPriceId", dataRow.Item("itemPriceId"))
+                        .Parameters.AddWithValue("@qty", dataRow.Item("qty"))
                     End With
                     cmdSql.ExecuteNonQuery()
                 Next
@@ -1184,12 +1224,14 @@ Public Class MainForm
         End Try
     End Sub
 
-    Private Sub txtBillsItemTotalPrice_TextChanged(sender As Object, e As EventArgs) Handles txtBillsItemTotalPrice.TextChanged
+    Private Sub txtBillsItemTotalPrice_TextChanged(sender As Object, e As EventArgs) Handles txtBillsItemTotalPrice.TextChanged, txtBillsTipAmount.TextChanged
         Dim taxPercent As Decimal = getDecimalZeroIfNull(txtBillsTaxPercent)
         Dim billsItemsTotalPrice As Decimal = getDecimalZeroIfNull(txtBillsItemTotalPrice)
+        Dim tipAmount As Decimal = getDecimalZeroIfNull(txtBillsTipAmount)
         Dim taxAmount As Decimal = billsItemsTotalPrice * taxPercent / 100
         txtBillsTaxAmount.Text = Format(taxAmount, "0.00")
-        txtBillsFinalBillAmount.Text = billsItemsTotalPrice + taxAmount
+        txtBillsPriceInclTax.Text = Format(billsItemsTotalPrice + taxAmount, "0.00")
+        txtBillsFianlBillAmount.Text = Format(billsItemsTotalPrice + taxAmount + tipAmount, "0.00")
     End Sub
 
     Function getDecimalZeroIfNull(textBox As TextBox) As Decimal
@@ -1270,8 +1312,6 @@ Public Class MainForm
 
         Dim billId As Integer = dgvBillsBillGrid.Item("BillsBillId", e.RowIndex).Value
         cmbBillsBillIdList.SelectedValue = billId
-
-        loadBillDetailInReport(billId)
     End Sub
 
     Private Sub btnBillsUpdate_Click(sender As Object, e As EventArgs) Handles btnBillsUpdate.Click
@@ -1284,15 +1324,15 @@ Public Class MainForm
         If txtBillsDisplayBillId.Text.Trim() = "" Then
             MessageBox.Show("Enter valid display bill id")
             txtBillsDisplayBillId.Focus()
-        ElseIf txtBillsItemPriceIds.Text.Trim() = "" Or txtBillsItemTotalPrice.Text.Trim() = "" Or txtBillsFinalBillAmount.Text.Trim() = "" Then
+        ElseIf txtBillsItemTotalPrice.Text.Trim() = "" Or txtBillsFianlBillAmount.Text.Trim() = "" Then
             MessageBox.Show("Select atleast one item to bill")
-            txtBillsItemPriceIds.Focus()
+            tvBillsBillItems.Focus()
         Else
 
             Dim query As String = String.Empty
             query &= "UPDATE Bill set displayBillId=@displayBillId, entityId=@entityId, dateTime=@dateTime, 
-                        itemPriceIds=@itemPriceIds, itemsPriceInTotal=@itemsPriceInTotal, taxAmount=@taxAmount, 
-                        finalBillAmount=@finalBillAmount, remarks=@remarks, placeCameFrom=@placeCameFrom 
+                        itemsPriceInTotal=@itemsPriceInTotal, taxAmount=@taxAmount, 
+                        cardNo=@cardNo, cardTransactionRef=@cardTransactionRef, extra1=@extra1, extra2=@extra2, orderNo=@orderNo, authToken=@authToken, placeCameFrom=@placeCameFrom
                         where id=@billId"
 
             Using comm As New SqlCommand()
@@ -1304,15 +1344,50 @@ Public Class MainForm
                     .Parameters.AddWithValue("@displayBillId", txtBillsDisplayBillId.Text)
                     .Parameters.AddWithValue("@entityId", cmbBillsEntityList.SelectedValue)
                     .Parameters.AddWithValue("@dateTime", dtpBillsBillDate.Value)
-                    .Parameters.AddWithValue("@itemPriceIds", txtBillsItemPriceIds.Text)
                     .Parameters.AddWithValue("@itemsPriceInTotal", txtBillsItemTotalPrice.Text)
                     .Parameters.AddWithValue("@taxAmount", getDecimalZeroIfNull(txtBillsTaxAmount))
-                    .Parameters.AddWithValue("@finalBillAmount", txtBillsFinalBillAmount.Text)
-                    .Parameters.AddWithValue("@remarks", getDBNullValueIfTextBoxNull(txtBillsRemarks))
+                    .Parameters.AddWithValue("@tipAmount", getDecimalZeroIfNull(txtBillsTipAmount))
+                    .Parameters.AddWithValue("@extra1", getDBNullValueIfTextBoxNull(txtBillsExtra1))
+                    .Parameters.AddWithValue("@extra2", getDBNullValueIfTextBoxNull(txtBillsExtra2))
                     .Parameters.AddWithValue("@placeCameFrom", getDBNullValueIfTextBoxNull(txtBillsPlaceCameFrom))
+                    .Parameters.AddWithValue("@cardNo", getDBNullValueIfTextBoxNull(txtBillsCardNum))
+                    .Parameters.AddWithValue("@cardTransactionRef", getDBNullValueIfTextBoxNull(txtBillsCardTransRef))
+                    .Parameters.AddWithValue("@orderNo", getDBNullValueIfTextBoxNull(txtBillsOrderNo))
+                    .Parameters.AddWithValue("@authToken", getDBNullValueIfTextBoxNull(txtBillsAuthToken))
                 End With
                 comm.ExecuteNonQuery()
             End Using
+
+            query = "DELETE FROM billItems where billId=@billId"
+
+            Using comm As New SqlCommand()
+                With comm
+                    .Connection = dbConnection
+                    .CommandType = CommandType.Text
+                    .CommandText = query
+                    .Parameters.AddWithValue("@billId", gSelectedBillId.ToString)
+                End With
+                comm.ExecuteNonQuery()
+            End Using
+
+            query = "INSERT INTO BillItems (billId, itemPriceId, qty) "
+            query &= "VALUES (@billId, @itemPriceId, @qty)"
+            Dim cmdSql As New SqlCommand(query, dbConnection)
+            cmdSql.CommandType = CommandType.Text
+            Dim selectedItemDetails As List(Of String) = New List(Of String)
+            Dim billItemsGridTable As DataTable = dgvBillsItemsQty.DataSource
+            For Each dataRow As DataRow In billItemsGridTable.Rows
+                cmdSql.Parameters.Clear()
+                With cmdSql
+                    .Connection = dbConnection
+                    .CommandType = CommandType.Text
+                    .CommandText = query
+                    .Parameters.AddWithValue("@billId", gSelectedBillId.ToString)
+                    .Parameters.AddWithValue("@itemPriceId", dataRow.Item("itemPriceId"))
+                    .Parameters.AddWithValue("@qty", dataRow.Item("qty"))
+                End With
+                cmdSql.ExecuteNonQuery()
+            Next
             MessageBox.Show("Bills successfully updated")
             loadBillsListAndGridInThread(cmbBillsEntityList.SelectedValue)
         End If
@@ -1328,8 +1403,19 @@ Public Class MainForm
 
         If MessageBox.Show("Are you sure to delete this bill - " & gSelectedBillId.ToString & " ?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
             Dim query As String = String.Empty
-            query &= "DELETE FROM bill where id=@id"
 
+            query = "DELETE FROM billItems where billId=@billId"
+            Using comm As New SqlCommand()
+                With comm
+                    .Connection = dbConnection
+                    .CommandType = CommandType.Text
+                    .CommandText = query
+                    .Parameters.AddWithValue("@billId", gSelectedBillId.ToString)
+                End With
+                comm.ExecuteNonQuery()
+            End Using
+
+            query = "DELETE FROM bill where id=@id"
             Using comm As New SqlCommand()
                 With comm
                     .Connection = dbConnection
@@ -1344,38 +1430,82 @@ Public Class MainForm
         End If
     End Sub
 
-    Sub loadBillDetailInReport(billId As Integer)
+    Sub loadBillDetailInReport(billReportData As BillReportData)
         Dim thread As Thread = New Thread(AddressOf loadBillDetailInReportInThread)
         thread.IsBackground = True
-        thread.Start(billId)
+        thread.Start(billReportData)
     End Sub
 
-    Sub loadBillDetailInReportInThread(billId As Integer)
-        Dim billDetailQuery = New SqlCommand("select i.name,ip.price from ItemPriceEntityWise ip, Item i where i.id=ip.itemId and ip.id in (Select itemPriceIds from Bill where id=" + billId.ToString + ")", dbConnection)
-        Dim billDetailAdapter = New SqlDataAdapter()
-        billDetailAdapter.SelectCommand = billDetailQuery
-        Dim billDetailDataSet = New DataSet
-        billDetailAdapter.Fill(billDetailDataSet, "BillDetail")
-        Dim billDetailTable As DataTable = billDetailDataSet.Tables(0)
+    Sub loadBillDetailInReportInThread(ByVal billReportDataParam As Object)
+        Dim billReportData As BillReportData = CType(billReportDataParam, BillReportData)
+        Dim billReportDetailDataSet = New DataSet
 
-        log.Debug("billDetailTable row count: " + billDetailTable.Rows.Count.ToString)
+        Dim entityId As Integer = billReportData.entityId
+        Dim entityQuery = New SqlCommand("select * from Entity
+                                where id=" + entityId.ToString, dbConnection)
+        Dim entityAdapter = New SqlDataAdapter()
+        entityAdapter.SelectCommand = entityQuery
+        entityAdapter.Fill(billReportDetailDataSet, "Entity")
+        Dim entityTable As DataTable = billReportDetailDataSet.Tables("Entity")
+
+        Dim billId As Integer = billReportData.billId
+        Dim billQuery = New SqlCommand("select id, displayBillId, datetime, itemsPriceInTotal,
+                                taxAmount, itemsPriceInTotal+taxAmount as totalPriceInclTax, tipAmount, itemsPriceInTotal+taxAmount+tipAmount as finalBillAmount, cardNo, cardTransactionRef, extra1, extra2, orderNo, authToken, placeCameFrom
+                                from bill where id=" + billId.ToString, dbConnection)
+        Dim billAdapter = New SqlDataAdapter()
+        billAdapter.SelectCommand = billQuery
+        billAdapter.Fill(billReportDetailDataSet, "Bill")
+        Dim billTable As DataTable = billReportDetailDataSet.Tables("Bill")
+
+        Dim billItemsQuery = New SqlCommand("select i.name as itemName, ip.price as price, ip.price*bi.qty as itemPriceByQty, bi.qty
+                                from ItemPriceEntityWise ip, Item i, BillItems bi
+                                where i.id=ip.itemId and ip.id=bi.itemPriceId and billId=" + billId.ToString, dbConnection)
+        Dim billItemsAdapter = New SqlDataAdapter()
+        billItemsAdapter.SelectCommand = billItemsQuery
+        billItemsAdapter.Fill(billReportDetailDataSet, "BillItems")
+        Dim billItemsTable As DataTable = billReportDetailDataSet.Tables("BillItems")
 
         Dim setBillDetailInReportInvoker As New setBillDetailInReportDelegate(AddressOf Me.setBillDetailInReport)
-        Me.BeginInvoke(setBillDetailInReportInvoker, billDetailTable)
+        Me.BeginInvoke(setBillDetailInReportInvoker, billReportDetailDataSet)
     End Sub
 
-    Delegate Sub setBillDetailInReportDelegate(billDetailTable As DataTable)
+    Delegate Sub setBillDetailInReportDelegate(billReportDetailDataset As DataSet)
 
-    Sub setBillDetailInReport(billDetailTable As DataTable)
-        Dim billCrystalReport As New CR_GeneralBill
+    Sub setBillDetailInReport(billReportDetailDataset As DataSet)
 
-        billCrystalReport.SetDataSource(billDetailTable)
-        crvBillReport.ReportSource = billCrystalReport
+        Dim entityName As String = cmbBillsEntityList.Text
+        Dim reportPath As String = Path.Combine(Directory.GetCurrentDirectory().Replace("\bin\Debug", "\"), entityName + ".rpt")
+
+        entityName = entityName.Replace("'", "")
+        Dim objectName As String = "BillCreation." + entityName.Replace(" ", "_")
+
+        Dim reportObject As ReportClass = Nothing
+        If System.IO.File.Exists(reportPath) Then
+            reportObject = Activator.CreateInstance(Type.GetType("BillCreation." + entityName.Replace(" ", "_")))
+        Else
+            reportObject = New CR_GeneralBill
+        End If
+
+        reportObject.SetDataSource(billReportDetailDataset)
+        crvBillReport.ReportSource = reportObject
+
     End Sub
+
+    Class BillReportData
+
+        Public billId As Integer
+        Public entityId As Integer
+
+        Sub New()
+            billId = -1
+            entityId = -1
+        End Sub
+
+    End Class
 
     Private Sub dgvBillsItemsQty_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBillsItemsQty.CellValueChanged
-        If e.ColumnIndex = 3 Then
-            txtBillsItemTotalPrice.Text = getTotalPriceFromBillItemsQtyGrid(dgvBillsItemsQty.DataSource)
+        If dgvBillsItemsQty.Columns(e.ColumnIndex).Name = "BillsItemQtyQuantity" Then
+            txtBillsItemTotalPrice.Text = Format(getTotalPriceFromBillItemsQtyGrid(dgvBillsItemsQty.DataSource), "0.00")
         End If
     End Sub
 
@@ -1384,6 +1514,7 @@ Public Class MainForm
             Return 0
         End If
 
+        log.Debug("getTotalPriceFromBillItemsQtyGrid: billItemPriceQtyTable rows count: " + billItemPriceQtyTable.Rows.Count.ToString)
         Dim totalPriceAmount As Decimal = 0
         For Each dataRow As DataRow In billItemPriceQtyTable.Rows
             totalPriceAmount += Decimal.Parse(dataRow.Item("itemPrice")) * Integer.Parse(dataRow.Item("qty"))
@@ -1393,6 +1524,15 @@ Public Class MainForm
     End Function
 
     Private Sub dgvBillsItemsQty_DataSourceChanged(sender As Object, e As EventArgs) Handles dgvBillsItemsQty.DataSourceChanged
-        txtBillsItemTotalPrice.Text = getTotalPriceFromBillItemsQtyGrid(dgvBillsItemsQty.DataSource)
+        txtBillsItemTotalPrice.Text = Format(getTotalPriceFromBillItemsQtyGrid(dgvBillsItemsQty.DataSource), "0.00")
     End Sub
+
+    Private Sub rbBillsCard_CheckedChanged(sender As Object, e As EventArgs) Handles rbBillsCard.CheckedChanged
+        If rbBillsCard.Checked Then
+            txtBillsCardNum.Visible = True
+        Else
+            txtBillsCardNum.Visible = False
+        End If
+    End Sub
+
 End Class
