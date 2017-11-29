@@ -66,3 +66,5 @@ D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\obj\Debug\Bi
 D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\obj\Debug\BillCreation.exe
 D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\obj\Debug\BillCreation.xml
 D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\obj\Debug\BillCreation.pdb
+D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\bin\Debug\BarcodeLib.Barcode.CrystalReports.dll
+D:\Git_Repositories\POS_Billing_Simulator\BillCreation\BillCreation\obj\Debug\BillCreation.Summary.resources
