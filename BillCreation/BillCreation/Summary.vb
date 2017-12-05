@@ -31,7 +31,7 @@ Public Class Summary
         entityTotalAdapter.Fill(totalDataSet, "EntityTotal")
         Dim entityTotalTable As DataTable = totalDataSet.Tables("EntityTotal")
 
-        Dim dateWiseTotalQuery = New SqlCommand("select dateTime, sum(itemsPriceInTotal+isnull(taxAmount1,0)+isnull(taxAmount2,0)+isnull(tipAmount,0)) as totalAmount from bill group by dateTime", dbConnection)
+        Dim dateWiseTotalQuery = New SqlCommand("select CAST(dateTime AS DATE) as dateTime, sum(itemsPriceInTotal+isnull(taxAmount1,0)+isnull(taxAmount2,0)+isnull(tipAmount,0)) as totalAmount from bill group by CAST(dateTime AS DATE)", dbConnection)
         Dim dateWiseTotalAdapter = New SqlDataAdapter()
         dateWiseTotalAdapter.SelectCommand = dateWiseTotalQuery
         dateWiseTotalAdapter.Fill(totalDataSet, "dateWiseTotal")

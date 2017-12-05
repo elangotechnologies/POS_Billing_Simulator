@@ -22,15 +22,15 @@ Partial Class MainForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gbEntityGrid = New System.Windows.Forms.GroupBox()
         Me.dgvEntities = New System.Windows.Forms.DataGridView()
         Me.entityId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -121,6 +121,11 @@ Partial Class MainForm
         Me.tvBillsBillItems = New System.Windows.Forms.TreeView()
         Me.gbBillSelectionItems = New System.Windows.Forms.GroupBox()
         Me.gbBills = New System.Windows.Forms.GroupBox()
+        Me.btnBillsPrintBillsOfEntity = New System.Windows.Forms.Button()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.txtBillsCashReturned = New System.Windows.Forms.TextBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.txtBillsCashTendered = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.txtBillsTaxPercent2 = New System.Windows.Forms.TextBox()
@@ -187,6 +192,8 @@ Partial Class MainForm
         Me.BillsTipAmount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BillsBillAmount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BillsExtra1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BillsCashTendered = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BillsCashReturned = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BillsExtra2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BillsCardNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BillsCardTransactionRef = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -235,8 +242,8 @@ Partial Class MainForm
         Me.dgvEntities.Location = New System.Drawing.Point(3, 16)
         Me.dgvEntities.Name = "dgvEntities"
         Me.dgvEntities.RowHeadersVisible = False
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvEntities.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvEntities.RowsDefaultCellStyle = DataGridViewCellStyle19
         Me.dgvEntities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvEntities.Size = New System.Drawing.Size(706, 135)
         Me.dgvEntities.TabIndex = 0
@@ -688,8 +695,8 @@ Partial Class MainForm
         Me.dgvItems.Location = New System.Drawing.Point(3, 16)
         Me.dgvItems.Name = "dgvItems"
         Me.dgvItems.RowHeadersVisible = False
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvItems.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvItems.RowsDefaultCellStyle = DataGridViewCellStyle20
         Me.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvItems.Size = New System.Drawing.Size(398, 172)
         Me.dgvItems.TabIndex = 0
@@ -915,8 +922,8 @@ Partial Class MainForm
         Me.dgvItemPrice.Location = New System.Drawing.Point(3, 16)
         Me.dgvItemPrice.Name = "dgvItemPrice"
         Me.dgvItemPrice.RowHeadersVisible = False
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvItemPrice.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvItemPrice.RowsDefaultCellStyle = DataGridViewCellStyle21
         Me.dgvItemPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvItemPrice.Size = New System.Drawing.Size(361, 172)
         Me.dgvItemPrice.TabIndex = 0
@@ -1037,7 +1044,7 @@ Partial Class MainForm
         Me.tvBillsBillItems.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tvBillsBillItems.Location = New System.Drawing.Point(3, 16)
         Me.tvBillsBillItems.Name = "tvBillsBillItems"
-        Me.tvBillsBillItems.Size = New System.Drawing.Size(383, 262)
+        Me.tvBillsBillItems.Size = New System.Drawing.Size(433, 262)
         Me.tvBillsBillItems.TabIndex = 0
         '
         'gbBillSelectionItems
@@ -1045,13 +1052,18 @@ Partial Class MainForm
         Me.gbBillSelectionItems.Controls.Add(Me.tvBillsBillItems)
         Me.gbBillSelectionItems.Location = New System.Drawing.Point(340, 11)
         Me.gbBillSelectionItems.Name = "gbBillSelectionItems"
-        Me.gbBillSelectionItems.Size = New System.Drawing.Size(389, 281)
+        Me.gbBillSelectionItems.Size = New System.Drawing.Size(439, 281)
         Me.gbBillSelectionItems.TabIndex = 12
         Me.gbBillSelectionItems.TabStop = False
         Me.gbBillSelectionItems.Text = "Select items to bill"
         '
         'gbBills
         '
+        Me.gbBills.Controls.Add(Me.btnBillsPrintBillsOfEntity)
+        Me.gbBills.Controls.Add(Me.Label40)
+        Me.gbBills.Controls.Add(Me.txtBillsCashReturned)
+        Me.gbBills.Controls.Add(Me.Label41)
+        Me.gbBills.Controls.Add(Me.txtBillsCashTendered)
         Me.gbBills.Controls.Add(Me.Button1)
         Me.gbBills.Controls.Add(Me.Label38)
         Me.gbBills.Controls.Add(Me.txtBillsTaxPercent2)
@@ -1105,13 +1117,61 @@ Partial Class MainForm
         Me.gbBills.TabStop = False
         Me.gbBills.Text = "Bills"
         '
+        'btnBillsPrintBillsOfEntity
+        '
+        Me.btnBillsPrintBillsOfEntity.BackColor = System.Drawing.Color.Purple
+        Me.btnBillsPrintBillsOfEntity.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnBillsPrintBillsOfEntity.FlatAppearance.BorderSize = 0
+        Me.btnBillsPrintBillsOfEntity.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBillsPrintBillsOfEntity.ForeColor = System.Drawing.Color.White
+        Me.btnBillsPrintBillsOfEntity.Location = New System.Drawing.Point(581, 421)
+        Me.btnBillsPrintBillsOfEntity.Name = "btnBillsPrintBillsOfEntity"
+        Me.btnBillsPrintBillsOfEntity.Size = New System.Drawing.Size(259, 29)
+        Me.btnBillsPrintBillsOfEntity.TabIndex = 73
+        Me.btnBillsPrintBillsOfEntity.Text = "Print Bills of Current Entity"
+        Me.btnBillsPrintBillsOfEntity.UseVisualStyleBackColor = False
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(560, 325)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(72, 13)
+        Me.Label40.TabIndex = 72
+        Me.Label40.Text = "cash returned"
+        '
+        'txtBillsCashReturned
+        '
+        Me.txtBillsCashReturned.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBillsCashReturned.Location = New System.Drawing.Point(647, 324)
+        Me.txtBillsCashReturned.Name = "txtBillsCashReturned"
+        Me.txtBillsCashReturned.Size = New System.Drawing.Size(124, 18)
+        Me.txtBillsCashReturned.TabIndex = 70
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(560, 301)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(75, 13)
+        Me.Label41.TabIndex = 71
+        Me.Label41.Text = "cash tendered"
+        '
+        'txtBillsCashTendered
+        '
+        Me.txtBillsCashTendered.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtBillsCashTendered.Location = New System.Drawing.Point(647, 300)
+        Me.txtBillsCashTendered.Name = "txtBillsCashTendered"
+        Me.txtBillsCashTendered.Size = New System.Drawing.Size(124, 18)
+        Me.txtBillsCashTendered.TabIndex = 69
+        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(410, 418)
+        Me.Button1.Location = New System.Drawing.Point(356, 418)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(195, 33)
         Me.Button1.TabIndex = 23
@@ -1170,7 +1230,7 @@ Partial Class MainForm
         Me.txtBillsAuthToken.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBillsAuthToken.Location = New System.Drawing.Point(396, 348)
         Me.txtBillsAuthToken.Name = "txtBillsAuthToken"
-        Me.txtBillsAuthToken.Size = New System.Drawing.Size(209, 18)
+        Me.txtBillsAuthToken.Size = New System.Drawing.Size(145, 18)
         Me.txtBillsAuthToken.TabIndex = 16
         '
         'Label34
@@ -1187,7 +1247,7 @@ Partial Class MainForm
         Me.txtBillsOrderNo.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBillsOrderNo.Location = New System.Drawing.Point(396, 323)
         Me.txtBillsOrderNo.Name = "txtBillsOrderNo"
-        Me.txtBillsOrderNo.Size = New System.Drawing.Size(209, 18)
+        Me.txtBillsOrderNo.Size = New System.Drawing.Size(145, 18)
         Me.txtBillsOrderNo.TabIndex = 15
         '
         'Label35
@@ -1204,7 +1264,7 @@ Partial Class MainForm
         Me.txtBillsCardTransRef.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBillsCardTransRef.Location = New System.Drawing.Point(396, 299)
         Me.txtBillsCardTransRef.Name = "txtBillsCardTransRef"
-        Me.txtBillsCardTransRef.Size = New System.Drawing.Size(209, 18)
+        Me.txtBillsCardTransRef.Size = New System.Drawing.Size(145, 18)
         Me.txtBillsCardTransRef.TabIndex = 14
         '
         'Label28
@@ -1221,7 +1281,7 @@ Partial Class MainForm
         Me.txtBillsExtra2.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBillsExtra2.Location = New System.Drawing.Point(396, 396)
         Me.txtBillsExtra2.Name = "txtBillsExtra2"
-        Me.txtBillsExtra2.Size = New System.Drawing.Size(209, 18)
+        Me.txtBillsExtra2.Size = New System.Drawing.Size(145, 18)
         Me.txtBillsExtra2.TabIndex = 18
         '
         'GroupBox1
@@ -1270,7 +1330,7 @@ Partial Class MainForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 345)
+        Me.Label6.Location = New System.Drawing.Point(12, 346)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(79, 13)
         Me.Label6.TabIndex = 52
@@ -1323,8 +1383,8 @@ Partial Class MainForm
         Me.dgvBillsItemsQty.Location = New System.Drawing.Point(3, 16)
         Me.dgvBillsItemsQty.Name = "dgvBillsItemsQty"
         Me.dgvBillsItemsQty.RowHeadersVisible = False
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvBillsItemsQty.RowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvBillsItemsQty.RowsDefaultCellStyle = DataGridViewCellStyle23
         Me.dgvBillsItemsQty.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvBillsItemsQty.Size = New System.Drawing.Size(306, 84)
         Me.dgvBillsItemsQty.TabIndex = 0
@@ -1362,8 +1422,8 @@ Partial Class MainForm
         'BillsItemQtyItemPrice
         '
         Me.BillsItemQtyItemPrice.DataPropertyName = "itemPrice"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.BillsItemQtyItemPrice.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.BillsItemQtyItemPrice.DefaultCellStyle = DataGridViewCellStyle22
         Me.BillsItemQtyItemPrice.HeaderText = "price"
         Me.BillsItemQtyItemPrice.Name = "BillsItemQtyItemPrice"
         Me.BillsItemQtyItemPrice.ReadOnly = True
@@ -1398,7 +1458,7 @@ Partial Class MainForm
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(11, 371)
+        Me.Label33.Location = New System.Drawing.Point(11, 369)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(85, 13)
         Me.Label33.TabIndex = 46
@@ -1426,7 +1486,7 @@ Partial Class MainForm
         Me.txtBillsExtra1.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBillsExtra1.Location = New System.Drawing.Point(396, 372)
         Me.txtBillsExtra1.Name = "txtBillsExtra1"
-        Me.txtBillsExtra1.Size = New System.Drawing.Size(209, 18)
+        Me.txtBillsExtra1.Size = New System.Drawing.Size(145, 18)
         Me.txtBillsExtra1.TabIndex = 17
         '
         'Label31
@@ -1593,9 +1653,9 @@ Partial Class MainForm
         'gbBillsBills
         '
         Me.gbBillsBills.Controls.Add(Me.dgvBillsBillGrid)
-        Me.gbBillsBills.Location = New System.Drawing.Point(732, 11)
+        Me.gbBillsBills.Location = New System.Drawing.Point(785, 11)
         Me.gbBillsBills.Name = "gbBillsBills"
-        Me.gbBillsBills.Size = New System.Drawing.Size(441, 399)
+        Me.gbBillsBills.Size = New System.Drawing.Size(388, 399)
         Me.gbBillsBills.TabIndex = 24
         Me.gbBillsBills.TabStop = False
         Me.gbBillsBills.Text = "Bills"
@@ -1606,15 +1666,15 @@ Partial Class MainForm
         Me.dgvBillsBillGrid.AllowUserToDeleteRows = False
         Me.dgvBillsBillGrid.AllowUserToResizeRows = False
         Me.dgvBillsBillGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvBillsBillGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.billsEntity, Me.BillsBillName, Me.BillsBillId, Me.BillsDisplayBillId, Me.BillsDateTime, Me.BillsItemsTotalPrice, Me.BillsTaxAmount1, Me.BillsTaxAmount2, Me.BillsPriceInclTax, Me.BillsTipAmount, Me.BillsBillAmount, Me.BillsExtra1, Me.BillsExtra2, Me.BillsCardNum, Me.BillsCardTransactionRef, Me.BillsOrderNum, Me.BillsAuthToken, Me.BillsPlaceCameFrom})
+        Me.dgvBillsBillGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.billsEntity, Me.BillsBillName, Me.BillsBillId, Me.BillsDisplayBillId, Me.BillsDateTime, Me.BillsItemsTotalPrice, Me.BillsTaxAmount1, Me.BillsTaxAmount2, Me.BillsPriceInclTax, Me.BillsTipAmount, Me.BillsBillAmount, Me.BillsExtra1, Me.BillsCashTendered, Me.BillsCashReturned, Me.BillsExtra2, Me.BillsCardNum, Me.BillsCardTransactionRef, Me.BillsOrderNum, Me.BillsAuthToken, Me.BillsPlaceCameFrom})
         Me.dgvBillsBillGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvBillsBillGrid.Location = New System.Drawing.Point(3, 16)
         Me.dgvBillsBillGrid.Name = "dgvBillsBillGrid"
         Me.dgvBillsBillGrid.RowHeadersVisible = False
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvBillsBillGrid.RowsDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Arial", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvBillsBillGrid.RowsDefaultCellStyle = DataGridViewCellStyle27
         Me.dgvBillsBillGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvBillsBillGrid.Size = New System.Drawing.Size(435, 380)
+        Me.dgvBillsBillGrid.Size = New System.Drawing.Size(382, 380)
         Me.dgvBillsBillGrid.TabIndex = 0
         '
         'billsEntity
@@ -1652,18 +1712,18 @@ Partial Class MainForm
         'BillsItemsTotalPrice
         '
         Me.BillsItemsTotalPrice.DataPropertyName = "itemsPriceInTotal"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "0.00"
-        Me.BillsItemsTotalPrice.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle24.Format = "0.00"
+        Me.BillsItemsTotalPrice.DefaultCellStyle = DataGridViewCellStyle24
         Me.BillsItemsTotalPrice.HeaderText = "itemsTotalPrice"
         Me.BillsItemsTotalPrice.Name = "BillsItemsTotalPrice"
         '
         'BillsTaxAmount1
         '
         Me.BillsTaxAmount1.DataPropertyName = "taxAmount1"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "0.00"
-        Me.BillsTaxAmount1.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle25.Format = "0.00"
+        Me.BillsTaxAmount1.DefaultCellStyle = DataGridViewCellStyle25
         Me.BillsTaxAmount1.HeaderText = "taxAmount1"
         Me.BillsTaxAmount1.Name = "BillsTaxAmount1"
         '
@@ -1688,9 +1748,9 @@ Partial Class MainForm
         'BillsBillAmount
         '
         Me.BillsBillAmount.DataPropertyName = "finalBillAmount"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle8.Format = "0.00"
-        Me.BillsBillAmount.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle26.Format = "0.00"
+        Me.BillsBillAmount.DefaultCellStyle = DataGridViewCellStyle26
         Me.BillsBillAmount.HeaderText = "finalBillAmount"
         Me.BillsBillAmount.Name = "BillsBillAmount"
         '
@@ -1699,6 +1759,18 @@ Partial Class MainForm
         Me.BillsExtra1.DataPropertyName = "extra1"
         Me.BillsExtra1.HeaderText = "extra1"
         Me.BillsExtra1.Name = "BillsExtra1"
+        '
+        'BillsCashTendered
+        '
+        Me.BillsCashTendered.DataPropertyName = "cashTendered"
+        Me.BillsCashTendered.HeaderText = "cash tendered"
+        Me.BillsCashTendered.Name = "BillsCashTendered"
+        '
+        'BillsCashReturned
+        '
+        Me.BillsCashReturned.DataPropertyName = "cashReturned"
+        Me.BillsCashReturned.HeaderText = "cash returned"
+        Me.BillsCashReturned.Name = "BillsCashReturned"
         '
         'BillsExtra2
         '
@@ -1956,6 +2028,11 @@ Partial Class MainForm
     Friend WithEvents taxPercent2 As DataGridViewTextBoxColumn
     Friend WithEvents distanceFromHotel As DataGridViewTextBoxColumn
     Friend WithEvents distanceFromOffice As DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label40 As Label
+    Friend WithEvents txtBillsCashReturned As TextBox
+    Friend WithEvents Label41 As Label
+    Friend WithEvents txtBillsCashTendered As TextBox
     Friend WithEvents billsEntity As DataGridViewTextBoxColumn
     Friend WithEvents BillsBillName As DataGridViewTextBoxColumn
     Friend WithEvents BillsBillId As DataGridViewTextBoxColumn
@@ -1968,11 +2045,13 @@ Partial Class MainForm
     Friend WithEvents BillsTipAmount As DataGridViewTextBoxColumn
     Friend WithEvents BillsBillAmount As DataGridViewTextBoxColumn
     Friend WithEvents BillsExtra1 As DataGridViewTextBoxColumn
+    Friend WithEvents BillsCashTendered As DataGridViewTextBoxColumn
+    Friend WithEvents BillsCashReturned As DataGridViewTextBoxColumn
     Friend WithEvents BillsExtra2 As DataGridViewTextBoxColumn
     Friend WithEvents BillsCardNum As DataGridViewTextBoxColumn
     Friend WithEvents BillsCardTransactionRef As DataGridViewTextBoxColumn
     Friend WithEvents BillsOrderNum As DataGridViewTextBoxColumn
     Friend WithEvents BillsAuthToken As DataGridViewTextBoxColumn
     Friend WithEvents BillsPlaceCameFrom As DataGridViewTextBoxColumn
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnBillsPrintBillsOfEntity As Button
 End Class

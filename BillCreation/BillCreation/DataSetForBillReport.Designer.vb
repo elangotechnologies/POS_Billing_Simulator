@@ -361,6 +361,10 @@ Partial Public Class DataSetForBillReport
         
         Private columnitemPriceByQty As Global.System.Data.DataColumn
         
+        Private columnorigQty As Global.System.Data.DataColumn
+        
+        Private columnintQty As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -429,6 +433,22 @@ Partial Public Class DataSetForBillReport
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property origQtyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnorigQty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property intQtyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnintQty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -465,9 +485,9 @@ Partial Public Class DataSetForBillReport
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddBillItemsRow(ByVal itemName As String, ByVal qty As String, ByVal itemPrice As String, ByVal itemPriceByQty As String) As BillItemsRow
+        Public Overloads Function AddBillItemsRow(ByVal itemName As String, ByVal qty As String, ByVal itemPrice As String, ByVal itemPriceByQty As String, ByVal origQty As String, ByVal intQty As String) As BillItemsRow
             Dim rowBillItemsRow As BillItemsRow = CType(Me.NewRow,BillItemsRow)
-            Dim columnValuesArray() As Object = New Object() {itemName, qty, itemPrice, itemPriceByQty}
+            Dim columnValuesArray() As Object = New Object() {itemName, qty, itemPrice, itemPriceByQty, origQty, intQty}
             rowBillItemsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowBillItemsRow)
             Return rowBillItemsRow
@@ -494,6 +514,8 @@ Partial Public Class DataSetForBillReport
             Me.columnqty = MyBase.Columns("qty")
             Me.columnitemPrice = MyBase.Columns("itemPrice")
             Me.columnitemPriceByQty = MyBase.Columns("itemPriceByQty")
+            Me.columnorigQty = MyBase.Columns("origQty")
+            Me.columnintQty = MyBase.Columns("intQty")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -507,6 +529,10 @@ Partial Public Class DataSetForBillReport
             MyBase.Columns.Add(Me.columnitemPrice)
             Me.columnitemPriceByQty = New Global.System.Data.DataColumn("itemPriceByQty", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnitemPriceByQty)
+            Me.columnorigQty = New Global.System.Data.DataColumn("origQty", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnorigQty)
+            Me.columnintQty = New Global.System.Data.DataColumn("intQty", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnintQty)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -997,6 +1023,10 @@ Partial Public Class DataSetForBillReport
         
         Private columnbarCode As Global.System.Data.DataColumn
         
+        Private columncashTendered As Global.System.Data.DataColumn
+        
+        Private columncashReturned As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1169,6 +1199,22 @@ Partial Public Class DataSetForBillReport
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property cashTenderedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncashTendered
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property cashReturnedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncashReturned
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1222,9 +1268,11 @@ Partial Public Class DataSetForBillReport
                     ByVal extra1 As String,  _
                     ByVal extra2 As String,  _
                     ByVal itemCount As String,  _
-                    ByVal barCode As String) As BillRow
+                    ByVal barCode As String,  _
+                    ByVal cashTendered As String,  _
+                    ByVal cashReturned As String) As BillRow
             Dim rowBillRow As BillRow = CType(Me.NewRow,BillRow)
-            Dim columnValuesArray() As Object = New Object() {id, displayBillId, datetime, itemsPriceInTotal, taxAmount1, taxAmount2, totalPriceInclTax, tipAmount, finalBillAmount, cardNo, cardTransactionRef, orderNo, authToken, extra1, extra2, itemCount, barCode}
+            Dim columnValuesArray() As Object = New Object() {id, displayBillId, datetime, itemsPriceInTotal, taxAmount1, taxAmount2, totalPriceInclTax, tipAmount, finalBillAmount, cardNo, cardTransactionRef, orderNo, authToken, extra1, extra2, itemCount, barCode, cashTendered, cashReturned}
             rowBillRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowBillRow)
             Return rowBillRow
@@ -1264,6 +1312,8 @@ Partial Public Class DataSetForBillReport
             Me.columnextra2 = MyBase.Columns("extra2")
             Me.columnitemCount = MyBase.Columns("itemCount")
             Me.columnbarCode = MyBase.Columns("barCode")
+            Me.columncashTendered = MyBase.Columns("cashTendered")
+            Me.columncashReturned = MyBase.Columns("cashReturned")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1303,6 +1353,10 @@ Partial Public Class DataSetForBillReport
             MyBase.Columns.Add(Me.columnitemCount)
             Me.columnbarCode = New Global.System.Data.DataColumn("barCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnbarCode)
+            Me.columncashTendered = New Global.System.Data.DataColumn("cashTendered", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncashTendered)
+            Me.columncashReturned = New Global.System.Data.DataColumn("cashReturned", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncashReturned)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1509,6 +1563,36 @@ Partial Public Class DataSetForBillReport
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property origQty() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableBillItems.origQtyColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'origQty' in table 'BillItems' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableBillItems.origQtyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property intQty() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableBillItems.intQtyColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'intQty' in table 'BillItems' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableBillItems.intQtyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsitemNameNull() As Boolean
             Return Me.IsNull(Me.tableBillItems.itemNameColumn)
         End Function
@@ -1553,6 +1637,30 @@ Partial Public Class DataSetForBillReport
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetitemPriceByQtyNull()
             Me(Me.tableBillItems.itemPriceByQtyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsorigQtyNull() As Boolean
+            Return Me.IsNull(Me.tableBillItems.origQtyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetorigQtyNull()
+            Me(Me.tableBillItems.origQtyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsintQtyNull() As Boolean
+            Return Me.IsNull(Me.tableBillItems.intQtyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetintQtyNull()
+            Me(Me.tableBillItems.intQtyColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2006,6 +2114,36 @@ Partial Public Class DataSetForBillReport
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property cashTendered() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableBill.cashTenderedColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'cashTendered' in table 'Bill' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableBill.cashTenderedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property cashReturned() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableBill.cashReturnedColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'cashReturned' in table 'Bill' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableBill.cashReturnedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsidNull() As Boolean
             Return Me.IsNull(Me.tableBill.idColumn)
         End Function
@@ -2206,6 +2344,30 @@ Partial Public Class DataSetForBillReport
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetbarCodeNull()
             Me(Me.tableBill.barCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IscashTenderedNull() As Boolean
+            Return Me.IsNull(Me.tableBill.cashTenderedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetcashTenderedNull()
+            Me(Me.tableBill.cashTenderedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IscashReturnedNull() As Boolean
+            Return Me.IsNull(Me.tableBill.cashReturnedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetcashReturnedNull()
+            Me(Me.tableBill.cashReturnedColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
