@@ -24,7 +24,7 @@ Public Class Summary
     End Sub
 
     Sub loadTotalAmountInThread()
-        Dim entityTotalQuery = New SqlCommand("select e.name, sum(b.itemsPriceInTotal+isnull(b.taxAmount1,0)+isnull(b.taxAmount2,0)+isnull(b.tipAmount,0)) as total from entity e, bill b where e.id=b.entityId group by e.name", dbConnection)
+        Dim entityTotalQuery = New SqlCommand("select e.name, count(1) as billCount, sum(b.itemsPriceInTotal+isnull(b.taxAmount1,0)+isnull(b.taxAmount2,0)+isnull(b.tipAmount,0)) as total from entity e, bill b where e.id=b.entityId group by e.name", dbConnection)
         Dim entityTotalAdapter = New SqlDataAdapter()
         entityTotalAdapter.SelectCommand = entityTotalQuery
         Dim totalDataSet = New DataSet

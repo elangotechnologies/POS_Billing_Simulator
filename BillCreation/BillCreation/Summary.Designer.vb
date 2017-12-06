@@ -23,20 +23,21 @@ Partial Class Summary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.txtBillTotalAmount = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvEntityWiseTotal = New System.Windows.Forms.DataGridView()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.entityWiseTotalEntityName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.entityWiseTotalEntityAmount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvDateWiseTotal = New System.Windows.Forms.DataGridView()
         Me.dateWiseTotaldate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.entityWiseTotalEntityName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EntityWiseBillsCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.entityWiseTotalEntityAmount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvEntityWiseTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -58,7 +59,7 @@ Partial Class Summary
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(36, 47)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(377, 702)
+        Me.GroupBox2.Size = New System.Drawing.Size(455, 702)
         Me.GroupBox2.TabIndex = 26
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Entity Wise Total "
@@ -69,7 +70,7 @@ Partial Class Summary
         Me.dgvEntityWiseTotal.AllowUserToDeleteRows = False
         Me.dgvEntityWiseTotal.AllowUserToResizeRows = False
         Me.dgvEntityWiseTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEntityWiseTotal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.entityWiseTotalEntityName, Me.entityWiseTotalEntityAmount})
+        Me.dgvEntityWiseTotal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.entityWiseTotalEntityName, Me.EntityWiseBillsCount, Me.entityWiseTotalEntityAmount})
         Me.dgvEntityWiseTotal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvEntityWiseTotal.Location = New System.Drawing.Point(3, 22)
         Me.dgvEntityWiseTotal.Name = "dgvEntityWiseTotal"
@@ -77,7 +78,7 @@ Partial Class Summary
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvEntityWiseTotal.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvEntityWiseTotal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEntityWiseTotal.Size = New System.Drawing.Size(371, 677)
+        Me.dgvEntityWiseTotal.Size = New System.Drawing.Size(449, 677)
         Me.dgvEntityWiseTotal.TabIndex = 0
         '
         'Label40
@@ -89,29 +90,13 @@ Partial Class Summary
         Me.Label40.TabIndex = 28
         Me.Label40.Text = "Total Bill Amount"
         '
-        'entityWiseTotalEntityName
-        '
-        Me.entityWiseTotalEntityName.DataPropertyName = "name"
-        Me.entityWiseTotalEntityName.HeaderText = "name"
-        Me.entityWiseTotalEntityName.Name = "entityWiseTotalEntityName"
-        Me.entityWiseTotalEntityName.Width = 250
-        '
-        'entityWiseTotalEntityAmount
-        '
-        Me.entityWiseTotalEntityAmount.DataPropertyName = "total"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.entityWiseTotalEntityAmount.DefaultCellStyle = DataGridViewCellStyle1
-        Me.entityWiseTotalEntityAmount.HeaderText = "total"
-        Me.entityWiseTotalEntityAmount.Name = "entityWiseTotalEntityAmount"
-        Me.entityWiseTotalEntityAmount.Width = 70
-        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.dgvDateWiseTotal)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(487, 50)
+        Me.GroupBox1.Location = New System.Drawing.Point(544, 50)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(380, 699)
+        Me.GroupBox1.Size = New System.Drawing.Size(381, 699)
         Me.GroupBox1.TabIndex = 26
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Date Wise Total"
@@ -130,7 +115,7 @@ Partial Class Summary
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvDateWiseTotal.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvDateWiseTotal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDateWiseTotal.Size = New System.Drawing.Size(374, 674)
+        Me.dgvDateWiseTotal.Size = New System.Drawing.Size(375, 674)
         Me.dgvDateWiseTotal.TabIndex = 0
         '
         'dateWiseTotaldate
@@ -150,6 +135,27 @@ Partial Class Summary
         Me.DataGridViewTextBoxColumn2.HeaderText = "total"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.Width = 70
+        '
+        'entityWiseTotalEntityName
+        '
+        Me.entityWiseTotalEntityName.DataPropertyName = "name"
+        Me.entityWiseTotalEntityName.HeaderText = "name"
+        Me.entityWiseTotalEntityName.Name = "entityWiseTotalEntityName"
+        Me.entityWiseTotalEntityName.Width = 250
+        '
+        'EntityWiseBillsCount
+        '
+        Me.EntityWiseBillsCount.DataPropertyName = "billCount"
+        Me.EntityWiseBillsCount.HeaderText = "bill count"
+        Me.EntityWiseBillsCount.Name = "EntityWiseBillsCount"
+        '
+        'entityWiseTotalEntityAmount
+        '
+        Me.entityWiseTotalEntityAmount.DataPropertyName = "total"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.entityWiseTotalEntityAmount.DefaultCellStyle = DataGridViewCellStyle1
+        Me.entityWiseTotalEntityAmount.HeaderText = "total"
+        Me.entityWiseTotalEntityAmount.Name = "entityWiseTotalEntityAmount"
         '
         'Summary
         '
@@ -174,10 +180,11 @@ Partial Class Summary
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents dgvEntityWiseTotal As DataGridView
     Friend WithEvents Label40 As Label
-    Friend WithEvents entityWiseTotalEntityName As DataGridViewTextBoxColumn
-    Friend WithEvents entityWiseTotalEntityAmount As DataGridViewTextBoxColumn
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents dgvDateWiseTotal As DataGridView
     Friend WithEvents dateWiseTotaldate As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents entityWiseTotalEntityName As DataGridViewTextBoxColumn
+    Friend WithEvents EntityWiseBillsCount As DataGridViewTextBoxColumn
+    Friend WithEvents entityWiseTotalEntityAmount As DataGridViewTextBoxColumn
 End Class

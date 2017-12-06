@@ -35,7 +35,7 @@ Public Class MainForm
         loadItemCategoryList()
         loadItemListInItemPrice()
 
-        loadBillReportByBillId(2, "Red Robin Gourmet Burgers", 20)
+        'loadBillReportByBillId(5, "Rivaj Indian Cuisine", 123)
     End Sub
 
     Sub loadEntityTypeList()
