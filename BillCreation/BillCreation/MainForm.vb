@@ -35,7 +35,7 @@ Public Class MainForm
         loadItemCategoryList()
         loadItemListInItemPrice()
 
-        'loadBillReportByBillId(5, "Rivaj Indian Cuisine", 123)
+        loadBillReportByBillId(7, "Thrupthi Foods", 283)
     End Sub
 
     Sub loadEntityTypeList()
@@ -1561,7 +1561,7 @@ Public Class MainForm
 
         Dim billId As Integer = billReportData.billId
 
-        Dim billItemsQuery = New SqlCommand("select i.name as itemName, ip.price as itemPrice, ip.price*bi.qty as itemPriceByQty, CONVERT(varchar(5), bi.qty) as qty, bi.qty as origQty, CONVERT(INT, bi.qty) as intQty
+        Dim billItemsQuery = New SqlCommand("select i.name as itemName, ip.price as itemPrice, ip.price*bi.qty as itemPriceByQty, CONVERT(varchar(5), bi.qty) as qty, bi.qty as origQty, CONVERT(INT, bi.qty) as intQty, CONVERT(varchar(3),CONVERT(INT, bi.qty)) as strQty
                                 from ItemPriceEntityWise ip, Item i, BillItems bi
                                 where i.id=ip.itemId and ip.id=bi.itemPriceId and billId=" + billId.ToString, dbConnection)
         Dim billItemsAdapter = New SqlDataAdapter()
