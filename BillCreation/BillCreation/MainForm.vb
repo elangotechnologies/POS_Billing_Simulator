@@ -35,7 +35,8 @@ Public Class MainForm
         loadItemCategoryList()
         loadItemListInItemPrice()
 
-        loadBillReportByBillId(7, "Thrupthi Foods", 283)
+        'loadBillReportByBillId(8, "Spice Bazaar Grocers", 288)
+        'loadBillReportByBillId(7, "Thrupthi Foods", 282)
     End Sub
 
     Sub loadEntityTypeList()

@@ -204,16 +204,16 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Skydeck Chicago.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Spice Bazaar Grocers.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Spice Bazaar Grocers.vb</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Summary.resx">
       <DependentUpon>Summary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Thrupthi Foods.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Thrupthi Foods.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Spice Bazaar Grocers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Spice Bazaar Grocers.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
