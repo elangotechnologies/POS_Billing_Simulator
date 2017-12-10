@@ -10,7 +10,7 @@ Public Class Summary
     Dim log As Logger = LogManager.GetCurrentClassLogger()
 
     Private Sub Summary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dbConnection = New SqlConnection("server=HIBAIL56209\ELASQLEXPRESS;Database=pos_billing;Integrated Security=true; MultipleActiveResultSets=True;")
+        dbConnection = New SqlConnection("server=DESKTOP-EHEMD7K\ELASQLEXPRESS;Database=pos_billing;Integrated Security=true; MultipleActiveResultSets=True;")
         dbConnection.Open()
 
         loadTotalAmount()

@@ -19,7 +19,7 @@ Public Class MainForm
     Private gSelectedBillId As Integer
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dbConnection = New SqlConnection("server=HIBAIL56209\ELASQLEXPRESS;Database=pos_billing;Integrated Security=true; MultipleActiveResultSets=True;")
+        dbConnection = New SqlConnection("server=DESKTOP-EHEMD7K\ELASQLEXPRESS;Database=pos_billing;Integrated Security=true; MultipleActiveResultSets=True;")
         dbConnection.Open()
 
         Me.KeyPreview = True
@@ -35,7 +35,8 @@ Public Class MainForm
         loadItemCategoryList()
         loadItemListInItemPrice()
 
-        'loadBillReportByBillId(8, "Spice Bazaar Grocers", 288)
+        'loadBillReportByBillId(8, "Spice Bazaar Grocers", 289)
+        loadBillReportByBillId(8, "Red Robin Gourmet Burgers", 268)
         'loadBillReportByBillId(7, "Thrupthi Foods", 282)
     End Sub
 
